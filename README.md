@@ -35,7 +35,7 @@ cd PointGroup
 (2) Install the dependent libraries.
 ```
 pip install -r requirements.txt
-conda install -c bioconda google-sparsehash 
+conda install -c bioconda google-sparsehash or apt-get install libsparsehash-dev
 ```
 
 (3) For the SparseConv, we apply the implementation of [spconv](https://github.com/traveller59/spconv). The repository is recursively downloaded at step (1). We use the version 1.0 of spconv. 
@@ -44,7 +44,7 @@ conda install -c bioconda google-sparsehash
 
 * To compile `spconv`, firstly install the dependent libraries. 
 ```
-conda install libboost
+conda install libboost or sudo apt-get install libboost-all-dev
 conda install -c daleydeng gcc-5 # need gcc-5.4 for sparseconv
 ```
 Add the `$INCLUDE_PATH$` that contains `boost` in `lib/spconv/CMakeLists.txt`. (Not necessary if it could be found.)
@@ -55,7 +55,7 @@ include_directories($INCLUDE_PATH$)
 * Compile the `spconv` library.
 ```
 cd lib/spconv
-python setup.py bdist_wheel
+python setup.py bdist_wheel (if torch version over 1.4, an error will occur. try to use torch 1.1)
 ```
 
 * Run `cd dist` and use pip to install the generated `.whl` file.
